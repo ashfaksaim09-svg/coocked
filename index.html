@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffb3c6, #ffe5ec);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+.page {
+  display: none;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.page.active { display: block; }
+
+h1, h3 { color: #333; }
+p { color: #555; white-space: pre-line; }
+
+button {
+  margin-top: 12px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d6d;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.answers button {
+  width: 100%;
+  margin: 8px 0;
+  background: #ffd6e0;
+  color: #333;
+}
+
+/* Heart */
+#heartGame {
+  font-size: 60px;
+  cursor: pointer;
+  position: absolute;
+}
+
+/* Photo */
+.photos img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 12px;
+}
+
+/* Video */
+video {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 12px;
+}
+
+/* Runaway button */
+#noBtn {
+  position: absolute;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>Catch the heart ❤️</h1>
+  <p id="score">Caught: 0 / 3</p>
+  <div id="heartGame" onclick="catchHeart()">❤️</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h1>Do you love me? 😌</h1>
+  <p><i>nigly if you love your life… don’t press no 😌</i></p>
+  <button onclick="goPage(3)">Yes 💖</button>
+  <button id="noBtn" onclick="runAway()">No 🙄</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <h1>Why are you so beautiful? 😍</h1>
+
+  <div class="answers">
+    <button onclick="wrong()">Good genes 🧬</button>
+    <button onclick="wrong()">Camera lies 📸</button>
+    <button onclick="goPage(4)">Because anika exist 💛</button>
+    <button onclick="wrong()">Magic ✨</button>
+  </div>
+
+  <div class="photos">
+    <img src="WhatsApp Image 2026-02-03 at 5.50.32 PM.jpeg" alt="You ❤️">
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <h3>What is Anika? 🤨</h3>
+
+  <div class="answers">
+    <button onclick="wrong()">nothing</button>
+    <button onclick="wrong()">botli</button>
+    <button onclick="goPage(5)">prettiest & hottest girl ever 😌</button>
+    <button onclick="wrong()">shut up</button>
+  </div>
+
+  <video controls>
+    <source src="videos/video1.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+  <h1>Just for you 💌</h1>
+  <p>
+I don’t know how to explain it perfectly,
+how beautiful you are 
+and what  you matter to me more than you realize.
+
+In a world that moves fast and gets loud,
+you feel like my quiet place.
+Effort is my love language,
+and this is mine 
+but this is  nothing.
+
+I love you more than words can say.
+You are my heart, my peace, my everything  
+thank you for everything🤍
+  </p>
+</div>
+
+<script>
+let count = 0;
+
+function catchHeart() {
+  count++;
+  document.getElementById("score").innerText =
+    `Caught:${count} / 3`;
+
+  const heart = document.getElementById("heartGame");
+  heart.style.left = Math.random() * 60 + "%";
+  heart.style.top = Math.random() * 60 + "%";
+
+  if (count === 3) goPage(2);
+}
+
+function runAway() {
+  const btn = document.getElementById("noBtn");
+  btn.style.left = Math.random() * 60 + "%";
+  btn.style.top = Math.random() * 60 + "%";
+}
+
+function wrong() {
+  alert("Wrong 😄 Try again!");
+}
+
+function goPage(n) {
+  document.querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
+  document.getElementById("page" + n)
+    .classList.add("active");
+}
+</script>
+
+</body>
+</html>
